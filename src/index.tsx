@@ -12,6 +12,15 @@ interface Props {
   usePopup?: boolean
   onSuccess?: Function
   onFailure?: Function
+  mode?: string
+  type?: string
+  appearance?: {
+    color?: 'black' | 'white'
+    border?: boolean
+    borderRadius?: number
+    width?: number
+    height?: number
+  }
   render?: (props: {
     onClick: (e?: any) => void
     disabled?: boolean
@@ -25,6 +34,7 @@ export const AppleLogin = (props: Props) => {
     'https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js',
     () => {
       const { clientId, scope, redirectURI, state, nonce, usePopup } = props
+
       window.AppleID.auth.init({
         clientId,
         scope,
@@ -60,12 +70,20 @@ export const AppleLogin = (props: Props) => {
   if (typeof props.render === 'function') {
     return props.render({ onClick })
   }
+
+  const { mode, type, appearance } = props
+  const { color, border, borderRadius, width, height } = appearance || {}
+
   return (
     <div
       id='appleid-signin'
-      data-color='black'
-      data-border='true'
-      data-type='sign in'
+      data-mode={mode}
+      data-type={type}
+      data-color={color}
+      data-border={border}
+      data-border-radius={borderRadius}
+      data-width={width}
+      data-height={height}
     />
   )
 }
