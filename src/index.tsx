@@ -21,10 +21,7 @@ interface Props {
     width?: number
     height?: number
   }
-  render?: (props: {
-    onClick: (e?: any) => void
-    disabled?: boolean
-  }) => JSX.Element
+  render?: (props: { onClick: (event?: any) => void }) => JSX.Element
 }
 
 declare let window: any
