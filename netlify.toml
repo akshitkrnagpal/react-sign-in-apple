@@ -1,0 +1,3 @@
+[build]
+  command = "cd example && npm install && npm run build-storybook"
+  publish = "example/storybook-static"
